@@ -28,9 +28,18 @@
 			</div>
 		</form>
 		<div class="row">
-			<div class="col-12">
-				<p id="message-1" style="margin-top: 30px"></p>
-				<p id="message-2"></p>
+			<div class="col-12" id="loading-div" style="display:none; margin-top: 30px;">
+				<p >Loading...</p>
+			</div>
+			<div id="weather-card" class="card" style="width: 18rem; margin-top: 30px; display:none">
+			  	<img id="weather-image" src="..." class="card-img-top" alt="">
+			  	<div class="card-body">
+			  		<h5 class="card-title" id="weather-title">Card title</h5>
+			    	<p id="weather-text" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			  	</div>
+			</div>
+			<div id="weather-alert" class="alert alert-danger" role="alert" style='display:none; margin-top: 30px;'>
+			  
 			</div>
 		</div>
 

@@ -1,22 +1,33 @@
 const weatherForm = document.querySelector('form')
 const search = document.querySelector('input');
-const messageOne = document.querySelector('#message-1');
-const messageTwo = document.querySelector('#message-2');
+const loadingDiv = document.querySelector('#loading-div');
+const weatherCard = document.querySelector('#weather-card');
+const weatherText = document.querySelector('#weather-text');
+const weatherTitle = document.querySelector('#weather-title');
+const image = document.querySelector('#weather-image');
+const alertDiv = document.querySelector('#weather-alert');
 
 weatherForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	const location = search.value;
-	messageOne.textContent = 'Loading...';
-	messageTwo.textContent = '';
+	weatherCard.style.display = 'none';
+	loadingDiv.style.display = 'block';
+	alertDiv.style.display = 'none';
+
 	fetch('/weather?location=' + encodeURIComponent(location.trim())).then((response) => {
 		response.json().then((data) => {
-			messageOne.textContent = ''
+			loadingDiv.style.display = 'none';
 			if (data.error) {
-				messageTwo.textContent = data.error;
+				alertDiv.textContent = data.error;
+				alertDiv.style.display = 'block';
 			} else {
-				messageOne.textContent = data.actual_location;
-				messageTwo.textContent = data.message
+				weatherCard.style.display = 'block';
+				weatherTitle.textContent = data.actual_location;
+				weatherText.textContent = data.message
+				if(data.weather_icons && data.weather_icons.length > 0) {
+					image.src = data.weather_icons[0];
+				}
 			}
 		
 		});

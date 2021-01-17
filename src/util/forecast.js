@@ -10,13 +10,15 @@ const forecast = (latitude, longitude, callback) => {
 				console.log(body.error);
 				callback("The following forecast error occured: " + body.error.info);
 			} else {
-				const {temperature, feelslike } = body.current;
+				console.log(body);
+				const {temperature, feelslike, weather_icons } = body.current;
 				const description = body.current.weather_descriptions[0];
 				callback(undefined, {
 					message : description + " : It is currently " + temperature + " degress out. It feels like " + feelslike + " degress out.",
 					description : description,
 					temperature,
-					feelslike
+					feelslike,
+					weather_icons
 				});
 			}
 		}
